@@ -23,14 +23,6 @@ const SuccessPage = () => {
 
       <div className="relative z-10 container mx-auto px-4 py-8 flex flex-col items-center justify-center min-h-screen max-w-md">
         
-        {/* ASMI Logo - Subtle placement */}
-        <div className="mb-6 opacity-60">
-          <img 
-            src="/lovable-uploads/7529d674-8203-4c7b-872b-99d72f59c412.png" 
-            alt="ASMI" 
-            className="h-8 w-auto"
-          />
-        </div>
 
         {/* Main Success Card */}
         <Card className="w-full p-6 bg-card/50 backdrop-blur-md border-border/30 shadow-card animate-fade-in">
@@ -73,11 +65,23 @@ const SuccessPage = () => {
             </div>
           </div>
 
-          {/* Processing indicator */}
+          {/* Dynamic Processing indicator */}
           <div className="text-center mb-6">
-            <div className="flex items-center justify-center gap-2 text-muted-foreground text-xs">
-              <Sparkles className="w-3 h-3 animate-pulse text-primary" />
-              <span>Processing your data...</span>
+            <div className="flex items-center justify-center gap-2 text-muted-foreground text-xs mb-2">
+              <div className="flex gap-1">
+                <div className="w-1 h-1 bg-primary rounded-full animate-bounce" style={{animationDelay: '0ms'}} />
+                <div className="w-1 h-1 bg-primary rounded-full animate-bounce" style={{animationDelay: '150ms'}} />
+                <div className="w-1 h-1 bg-primary rounded-full animate-bounce" style={{animationDelay: '300ms'}} />
+              </div>
+              <span>Processing vast amounts of data</span>
+              <div className="flex gap-1">
+                <div className="w-1 h-1 bg-accent rounded-full animate-pulse" style={{animationDelay: '100ms'}} />
+                <div className="w-1 h-1 bg-accent rounded-full animate-pulse" style={{animationDelay: '200ms'}} />
+                <div className="w-1 h-1 bg-accent rounded-full animate-pulse" style={{animationDelay: '400ms'}} />
+              </div>
+            </div>
+            <div className="text-xs text-muted-foreground/70 font-mono">
+              <span className="animate-pulse">AI • Calendar • Gmail • Contacts</span>
             </div>
           </div>
 
@@ -100,6 +104,15 @@ const SuccessPage = () => {
             <span className="text-xs text-muted-foreground font-mono">
               asmiai.com
             </span>
+          </div>
+          
+          {/* Subtle ASMI Logo placement */}
+          <div className="mt-4 opacity-30">
+            <img 
+              src="/lovable-uploads/7529d674-8203-4c7b-872b-99d72f59c412.png" 
+              alt="ASMI" 
+              className="h-6 w-auto mx-auto"
+            />
           </div>
         </div>
 
