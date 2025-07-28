@@ -5,7 +5,7 @@ import successCheck from "@/assets/success-check.png";
 
 const SuccessPage = () => {
   return (
-    <div className="min-h-screen bg-background font-inter relative overflow-hidden">
+    <div className="h-screen bg-background font-inter relative overflow-hidden flex items-center justify-center">
       {/* Animated floating orbs background */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float-slow" />
@@ -21,10 +21,10 @@ const SuccessPage = () => {
            }} 
       />
 
-      <div className="relative z-10 container mx-auto px-3 py-6 flex flex-col items-center justify-center min-h-screen max-w-sm">
+      <div className="relative z-10 container mx-auto px-4 w-full max-w-sm">
 
         {/* Main Success Card */}
-        <Card className="w-full p-4 sm:p-6 bg-card/50 backdrop-blur-md border-border/30 shadow-card animate-fade-in">
+        <Card className="w-full p-4 sm:p-6 bg-card/50 backdrop-blur-md border-border/30 shadow-card animate-fade-in mb-6">
           
           {/* Success Icon */}
           <div className="flex justify-center mb-4">
@@ -84,17 +84,16 @@ const SuccessPage = () => {
 
         </Card>
 
-        {/* Footer with subtle ASMI logo */}
-        <div className="mt-4 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-secondary/20 rounded-full border border-border/20">
-            <img 
-              src="/lovable-uploads/7529d674-8203-4c7b-872b-99d72f59c412.png" 
-              alt="ASMI" 
-              className="h-3 w-auto opacity-40"
-            />
-            <span className="text-xs text-muted-foreground font-mono opacity-60">
+        {/* Footer - matching screenshot format */}
+        <div className="text-center space-y-4">
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-2 h-2 bg-primary rounded-full" />
+            <span className="text-sm text-muted-foreground">
               asmiai.com
             </span>
+          </div>
+          <div className="text-2xl font-light text-muted-foreground/30 tracking-wider">
+            ASMI
           </div>
         </div>
 
