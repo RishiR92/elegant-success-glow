@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASMI - Integration Complete</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #fafafa;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .background-orbs {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+        
+        .orb-1 {
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 256px;
+            height: 256px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 50%;
+            filter: blur(48px);
+            animation: float-slow 8s ease-in-out infinite;
+        }
+        
+        .orb-2 {
+            position: absolute;
+            top: 75%;
+            right: 25%;
+            width: 192px;
+            height: 192px;
+            background: rgba(168, 85, 247, 0.1);
+            border-radius: 50%;
+            filter: blur(48px);
+            animation: float-slower 12s ease-in-out infinite;
+        }
+        
+        .orb-3 {
+            position: absolute;
+            bottom: 25%;
+            left: 33.333333%;
+            width: 128px;
+            height: 128px;
+            background: rgba(34, 197, 94, 0.2);
+            border-radius: 50%;
+            filter: blur(32px);
+            animation: float-fast 6s ease-in-out infinite;
+        }
+        
+        .grid-background {
+            position: absolute;
+            inset: 0;
+            opacity: 0.03;
+            background-image: radial-gradient(circle at 2px 2px, #6366f1 1px, transparent 0);
+            background-size: 50px 50px;
+            animation: drift 20s linear infinite;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 384px;
+            padding: 0 16px;
+        }
+        
+        .success-card {
+            width: 100%;
+            padding: 24px;
+            background: rgba(39, 39, 42, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(63, 63, 70, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 24px;
+            animation: fade-in 0.3s ease-out;
+        }
+        
+        .success-icon-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        
+        .success-icon-wrapper {
+            position: relative;
+        }
+        
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            animation: scale-in 0.2s ease-out;
+        }
+        
+        .success-glow {
+            position: absolute;
+            inset: 0;
+            background: rgba(99, 102, 241, 0.3);
+            border-radius: 50%;
+            filter: blur(24px);
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+        
+        .success-message {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        
+        .success-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fafafa;
+            margin-bottom: 8px;
+        }
+        
+        .success-subtitle {
+            font-size: 14px;
+            color: #a1a1aa;
+        }
+        
+        .services-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .service-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px;
+            background: rgba(39, 39, 42, 0.5);
+            border-radius: 8px;
+            border: 1px solid rgba(63, 63, 70, 0.3);
+        }
+        
+        .service-icon {
+            width: 20px;
+            height: 20px;
+            color: #6366f1;
+            margin-bottom: 4px;
+        }
+        
+        .service-label {
+            font-size: 12px;
+            color: #a1a1aa;
+        }
+        
+        .processing-indicator {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        
+        .processing-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #a1a1aa;
+            font-size: 12px;
+        }
+        
+        .sparkles-icon {
+            width: 12px;
+            height: 12px;
+            color: #6366f1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .action-button {
+            width: 100%;
+            background: #6366f1;
+            color: white;
+            font-weight: 500;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-size: 14px;
+        }
+        
+        .action-button:hover {
+            background: rgba(99, 102, 241, 0.9);
+        }
+        
+        .footer {
+            text-align: center;
+        }
+        
+        .footer-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .footer-dot {
+            width: 8px;
+            height: 8px;
+            background: #6366f1;
+            border-radius: 50%;
+        }
+        
+        .footer-url {
+            font-size: 14px;
+            color: #a1a1aa;
+        }
+        
+        .footer-brand {
+            font-size: 24px;
+            font-weight: 300;
+            color: rgba(161, 161, 170, 0.3);
+            letter-spacing: 0.1em;
+        }
+        
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes float-slower {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes float-fast {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-25px); }
+        }
+        
+        @keyframes drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scale-in {
+            0% {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes glow-pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @media (max-width: 640px) {
+            .success-card {
+                padding: 16px;
+            }
+            
+            .success-icon {
+                width: 48px;
+                height: 48px;
+            }
+            
+            .success-title {
+                font-size: 18px;
+            }
+            
+            .services-container {
+                gap: 8px;
+            }
+            
+            .service-item {
+                padding: 8px;
+            }
+            
+            .service-icon {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background orbs -->
+    <div class="background-orbs">
+        <div class="orb-1"></div>
+        <div class="orb-2"></div>
+        <div class="orb-3"></div>
+    </div>
+    
+    <!-- Grid background -->
+    <div class="grid-background"></div>
+    
+    <!-- Main container -->
+    <div class="container">
+        <!-- Success Card -->
+        <div class="success-card">
+            <!-- Success Icon -->
+            <div class="success-icon-container">
+                <div class="success-icon-wrapper">
+                    <!-- Success checkmark SVG -->
+                    <svg class="success-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="2" fill="#22c55e" fill-opacity="0.2"/>
+                        <path d="m9 12 2 2 4-4" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="success-glow"></div>
+                </div>
+            </div>
+            
+            <!-- Success Message -->
+            <div class="success-message">
+                <h2 class="success-title">All Set!</h2>
+                <p class="success-subtitle">Your AI Chief of Staff is ready</p>
+            </div>
+            
+            <!-- Connected Services -->
+            <div class="services-container">
+                <div class="service-item">
+                    <!-- Calendar SVG -->
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2"/>
+                        <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2"/>
+                        <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="service-label">Calendar</span>
+                </div>
+                <div class="service-item">
+                    <!-- Mail SVG -->
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2"/>
+                        <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="service-label">Gmail</span>
+                </div>
+                <div class="service-item">
+                    <!-- Users SVG -->
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                        <path d="m22 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="2"/>
+                        <path d="m16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="service-label">Contacts</span>
+                </div>
+            </div>
+            
+            <!-- Processing Indicator -->
+            <div class="processing-indicator">
+                <div class="processing-content">
+                    <!-- Sparkles SVG -->
+                    <svg class="sparkles-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M5 3v4" stroke="currentColor" stroke-width="2"/>
+                        <path d="M19 17v4" stroke="currentColor" stroke-width="2"/>
+                        <path d="M3 5h4" stroke="currentColor" stroke-width="2"/>
+                        <path d="M17 19h4" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>Processing your data...</span>
+                </div>
+            </div>
+            
+            <!-- Action Button -->
+            <button class="action-button" onclick="window.close()">
+                Return to ASMI
+            </button>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-link">
+                <div class="footer-dot"></div>
+                <span class="footer-url">asmiai.com</span>
+            </div>
+            <div class="footer-brand">ASMI</div>
+        </div>
+    </div>
+</body>
+</html>
